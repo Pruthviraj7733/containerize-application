@@ -11,8 +11,8 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.0.0/bin/apache-tom
     tar -xvf apache-tomcat-10.0.0.tar.gz -C /opt/ && \
     rm -rf apache-tomcat-10.0.0.tar.gz
 
-#Create JSP application
-RUN echo "My Java Application is running sucessfully!!!" >> index.jsp
+#Copy the JSP application inside container
+COPY index.jsp .
 
 #Create WAR File
 RUN jar -cvf java-application.war index.jsp 
