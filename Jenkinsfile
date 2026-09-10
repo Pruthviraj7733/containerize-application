@@ -38,7 +38,27 @@ pipeline {
                 echo "Docker Container Running Sucessfully"
             }
         }
-        
+
+        stage('Wait for Application') {
+        steps {
+            sh '''
+            echo "Waiting for application to start..."
+
+            for i in {1..30}
+            do
+                if curl -sf http://localhost:9090/java-application/ > /dev/null
+                then
+                    echo "Application is UP!"
+                    break
+                fi
+
+                echo "Application is not ready yet... retrying..."
+                sleep 2
+            done
+        '''
+    }
+}
+
         stage('Application Testing')
         {
             steps{
