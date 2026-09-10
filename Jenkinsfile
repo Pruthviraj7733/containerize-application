@@ -7,7 +7,7 @@ pipeline {
         {
            steps{
                git url: "https://github.com/Pruthviraj7733/containerize-application.git", branch: "main"
-               echo "Clonning cod is sucessfull!!!"
+               echo "Clonning cod is sucessfull!!"
            }
         }
         
