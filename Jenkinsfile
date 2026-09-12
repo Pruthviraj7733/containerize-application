@@ -42,7 +42,7 @@ pipeline {
         stage('Wait for Application') {
         steps {
             sh '''
-            echo "Waiting for application to start..."
+            echo "Waiting for application to start.."
 
             for i in {1..6}
             do
