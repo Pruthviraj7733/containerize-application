@@ -44,17 +44,12 @@ pipeline {
             sh '''
             echo "Waiting for application to start..."
 
-            for i in {1..30}
+            for i in {1..6}
             do
-                if curl -sf http://localhost:9090/java-application/ > /dev/null
-                then
-                    echo "Application is UP!"
-                    break
-                fi
-
-                echo "Application is not ready yet... retrying..."
-                sleep 2
-            done
+                curl -sf http://localhost:9090/java-application/ && exit 0
+                sleep 5 
+            done 
+            exit 1
         '''
     }
 }
