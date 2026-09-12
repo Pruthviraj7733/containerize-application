@@ -24,5 +24,5 @@ RUN mv java-application.war /opt/apache-tomcat-10.0.0/webapps/
 EXPOSE 8080
 
 #Start the apache tomcat in foreground
-CMD ["/opt/apache-tomcat-10.0.0/bin/catalina.sh","run"] 
-#CMD ["sh", "-c", "/opt/apache-tomcat-10.0.0/bin/catalina.sh start && tail -f /dev/null"]   
+#CMD ["/opt/apache-tomcat-10.0.0/bin/catalina.sh","run"] 
+CMD ["sh", "-c", "/opt/apache-tomcat-10.0.0/bin/catalina.sh start && tail -f /dev/null"]   
