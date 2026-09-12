@@ -3,14 +3,6 @@ pipeline {
     
     stages{
         
-        stage('Clonning')
-        {
-           steps{
-               git url: "https://github.com/Pruthviraj7733/containerize-application.git", branch: "main"
-               echo "Clonning cod is sucessfull!!"
-           }
-        }
-        
         stage('Buiding Docker Image')
         {
             steps{
@@ -19,6 +11,28 @@ pipeline {
                 sh "docker image ls"
                 echo "Thank you so much jenkins"
             }
+        }
+
+	stage('Push Image to Docker Hub') {
+        steps {
+        withCredentials([usernamePassword(
+            credentialsId: 'dockerhub-creds',
+            usernameVariable: 'DOCKER_USERNAME',
+            passwordVariable: 'DOCKER_PASSWORD'
+            )]) {
+                  sh '''
+                 
+                    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+                    docker tag java-application:${BUILD_NUMBER} ${DOCKER_USERNAME}/java-application:${BUILD_NUMBER}
+
+                    docker push ${DOCKER_USERNAME}/java-application:${BUILD_NUMBER}
+
+                    docker logout
+                    
+                    '''
+               }
+           }
         }
         
         stage('Delete Old Container')
