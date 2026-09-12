@@ -42,13 +42,18 @@ pipeline {
         stage('Wait for Application') {
         steps {
             sh '''
-            echo "Waiting for application to start.."
-
-            for i in {1..6}
+            for i in $(seq 1 30)
             do
-                curl -sf http://localhost:9090/java-application/ && exit 0
-                sleep 5 
-            done 
+               if curl -sf http://localhost:9090/java-application/ > /dev/null
+            then
+               echo "Application is UP!"
+            exit 0
+            else
+               echo "Attempt $i: Application is not ready. Retrying in 5 seconds..."
+            sleep 2
+            fi
+            done
+
             exit 1
         '''
     }
