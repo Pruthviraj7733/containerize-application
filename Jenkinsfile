@@ -49,7 +49,7 @@ pipeline {
             steps{
                 
                 sh "docker container run -itd --name myapplication -p 9090:8080 java-application:${BUILD_NUMBER}"
-                echo "Docker Container Running Sucessfully"
+                echo "Docker Container Running Sucessfully!!!"
             }
         }
 
