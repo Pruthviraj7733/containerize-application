@@ -110,7 +110,7 @@ pipeline {
         stage('Success') {
             steps {
 
-                echo "Your Application is deployed successfully on EKS!!!"
+                echo "Your Application is deployed successfully on EKS"
             }
         }
     }
