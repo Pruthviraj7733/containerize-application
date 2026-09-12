@@ -706,7 +706,7 @@
 
     window.addEventListener("load", function() {
         setTimeout(function() {
-            showToast("Application deployed successfully");
+            showToast("Application deployed successfully!!!");
         }, 900);
     });
 </script>
