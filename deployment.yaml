@@ -20,7 +20,7 @@ spec:
       containers:
         - name: java-application
 
-          image: pmarkad/java-application:43
+          image: pmarkad/java-application:46
 
           ports:
             - containerPort: 8080
