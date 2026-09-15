@@ -61,7 +61,6 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
 
-                sh '''
                  withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
                     usernameVariable: 'DOCKER_USERNAME',
@@ -69,6 +68,7 @@ pipeline {
                 )]) {
 
                     sh '''
+
                         echo "$DOCKER_PASSWORD" | docker login \
                             -u "$DOCKER_USERNAME" \
                             --password-stdin
