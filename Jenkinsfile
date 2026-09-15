@@ -78,6 +78,7 @@ pipeline {
                 
                         docker logout
                 '''
+		}
             }
         }
 
